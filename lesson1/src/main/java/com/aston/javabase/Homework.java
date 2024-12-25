@@ -52,13 +52,23 @@ public class Homework {
     // aba - true
     // 112211 - true
     public static boolean isPalindrome(String string) {
+        /* Это был код для условия O(1), но в ходе написания условия упростили до O(n).
+        Код все равно не работает, потому, что метод .contentEquals не обрабатывает 2 CharSequence.
+        Но концептуально это решение правильное(если дописать ручной компаратор, то оно будет лучше цикла по скорости).
+
         if (string.length() % 2 == 0){
             System.out.println(string.substring(0, string.length() / 2) + " " +"\u202E" +  string.substring(string.length() / 2));
             return string.substring(0, string.length() / 2).contentEquals("\u202E" + string.substring(string.length() / 2));
         }else {
             System.out.println(string.substring(0, string.length() / 2 + 1) + " " +"\u202E" +  string.substring(string.length() / 2));
             return string.substring(0, string.length() / 2 + 1).contentEquals("\u202E" + string.substring(string.length() / 2));
+        }*/
+        for (int i = 0; i < string.length() / 2; i++) {
+            if (string.charAt(i) != string.charAt(string.length() - i - 1)) {
+                return false;
+            }
         }
+        return true;
     }
 
     public static void main(String[] args) {
